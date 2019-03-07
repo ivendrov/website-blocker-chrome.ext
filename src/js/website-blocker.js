@@ -251,14 +251,21 @@ function WebsiteBlocker() {
      * @param alphabetUpper {boolean} use uppercase alphabet
      */
     WB.prototype.generateRandomString = function(digit, number, alphabetLower, alphabetUpper) {
-        var pool = '', code = '';
-        if (number)        pool += '1234567890';
-        if (alphabetLower) pool += 'abcdefghijklmnopqrstuvwxyz';
-        if (alphabetUpper) pool += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var pool = '23456789', code = '';
 
-        for (var i = 0; i < digit; i++) {
-            code += pool.substr(Math.random() * pool.length, 1);
+        function getRandomDigit() {
+          return pool.substr(Math.random() * pool.length, 1);
         }
+
+        function getRandomDigitStr(len) {
+          total_str = '';
+          for (var i = 0; i < len; i++) {
+            total_str += getRandomDigit();
+          }
+          return total_str;
+        }
+
+        code = getRandomDigitStr(2) + " * " + getRandomDigitStr(2);
 
         return code;
     };

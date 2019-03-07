@@ -40,9 +40,9 @@ $('.go-back').click(function() {
 });
 
 $('#password-check').click(function() {
-    var valid = chrome.extension.getBackgroundPage().WB.matchPassphrase($('#password-target').val(), $('#password-typing').val());
+    var valid = eval($('#password-target').val()) == eval($('#password-typing').val());
     if (valid === true) {
-        chrome.extension.getBackgroundPage().WB.setTimeLimit(600); // 5 min.
+        chrome.extension.getBackgroundPage().WB.setTimeLimit(20 * 60); // 20 min.
         window.location.href = url;
     }
 });
